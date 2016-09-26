@@ -1,5 +1,5 @@
-CS50 course problem sets
-========================
+[edX CS50](https://courses.edx.org/courses/course-v1:HarvardX+CS50+X/info) course problem sets
+==============================================================================================
 
 1. Week 1
 ---------
