@@ -1,6 +1,9 @@
 /**
  * helpers.h
  *
+ * Andriy Doroshenko
+ * mpleukraine@gmail.com
+ * 
  * Computer Science 50
  * Problem Set 3
  *

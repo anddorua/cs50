@@ -1,6 +1,9 @@
 /**
  * fifteen.c
  *
+ * Andriy Doroshenko
+ * mpleukraine@gmail.com
+ * 
  * Computer Science 50
  * Problem Set 3
  *
@@ -25,6 +28,8 @@
 // constants
 #define DIM_MIN 3
 #define DIM_MAX 9
+#define PAUSE_US 100000
+#define EMPTY_TILE 0
 
 // board
 int board[DIM_MAX][DIM_MAX];
@@ -120,11 +125,11 @@ int main(int argc, string argv[])
         if (!move(tile))
         {
             printf("\nIllegal move.\n");
-            usleep(500000);
+            usleep(PAUSE_US);
         }
 
         // sleep thread for animation's sake
-        usleep(500000);
+        usleep(PAUSE_US);
     }
     
     // close log
@@ -159,7 +164,28 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
+    int cur_value = d * d - 1; // start from biggest number
+    int pos = 0; // position where to place tile
+    while (cur_value >= 0) // walk through all tiles consiquently including empty place marked zero
+    {
+        int row = pos / d; // row of tile, beginning from 0
+        int col = pos % d; // column of tile, beginning from 0
+        int value_to_set = cur_value--;
+        if ((d % 2) == 0) // test for odd number of tiles
+        {
+            // if odd number of tiles we should swap two last tiles
+            if(value_to_set == 2) 
+            {
+                value_to_set = 1;    
+            }
+            else if (value_to_set == 1)
+            {
+                value_to_set = 2;    
+            }
+        }
+        board[row][col] = value_to_set;
+        pos++;
+    }
 }
 
 /**
@@ -167,7 +193,45 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] != EMPTY_TILE)
+            {
+                printf("%4d", board[i][j]);
+            }
+            else
+            {
+                printf("  __");
+            }
+        }
+        printf("\n");
+    }
+}
+
+typedef struct {
+    int row;
+    int col;
+} Position;
+
+
+/**
+ * finds row and col of given tile
+ */
+Position find_pos(int tile)
+{
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == tile)
+            {
+                 return (Position){i, j};
+            }
+        }
+    }
+    return (Position){-1, -1};
 }
 
 /**
@@ -176,8 +240,21 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
-    return false;
+    // find place
+    Position tile_pos = find_pos(tile);
+    Position empty_pos = find_pos(EMPTY_TILE);
+    // test for difference equal 1 i.e. positions are near each other
+    if ((abs(tile_pos.row - empty_pos.row) + abs(tile_pos.col - empty_pos.col)) == 1)
+    {
+        // positions switchable so lets switch it
+        board[empty_pos.row][empty_pos.col] = tile;
+        board[tile_pos.row][tile_pos.col] = EMPTY_TILE;
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
 }
 
 /**
@@ -186,6 +263,18 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
-    return false;
+    int cur_value = 1;
+    int pos = 0;
+    while (cur_value < d * d)
+    {
+        int row = pos / d;
+        int col = pos % d;
+        int value_to_set = cur_value++;
+        if (board[row][col] != value_to_set) {
+            return false;
+        }
+        pos++;
+    }
+
+    return true;
 }
