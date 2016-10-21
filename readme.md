@@ -20,4 +20,5 @@
 ---------
 
    Hooray!! Dinamic arrays like `int a[n];` situated in stack, now world on its own place.
+   Done.
 
