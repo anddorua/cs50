@@ -22,3 +22,12 @@
    Hooray!! Dinamic arrays like `int a[n];` situated in stack, now world on its own place.
    Done.
 
+5. Week 5
+---------
+   No pset.
+
+6. Week 6
+---------
+   
+   PSet 5 done.
+
