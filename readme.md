@@ -31,3 +31,7 @@
    
    PSet 5 done.
 
+7. Week 7
+---------
+
+   PSet 6 done.
