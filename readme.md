@@ -35,3 +35,8 @@
 ---------
 
    PSet 6 done.
+
+8. Week 8
+---------
+
+   PSet 7 done.
