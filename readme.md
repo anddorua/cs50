@@ -40,3 +40,8 @@
 ---------
 
    PSet 7 done.
+
+9. Week 9
+---------
+
+   PSet 8 done. Custom markers and weather icons.

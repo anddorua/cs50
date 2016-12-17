@@ -1,0 +1,14 @@
+{
+    "name": "andriydoroshenko/pset8",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2",
+        "phpfastcache/phpfastcache": "^5.0"
+    },
+    "authors": [
+        {
+            "name": "Andriy Doroshenko",
+            "email": "mapleukraine@gmail.com"
+        }
+    ],
+    "vendor-dir": "vendor"
+}
